@@ -16,11 +16,11 @@ public interface AdminMapper {
     //    @Cacheable(unless = "#result == null",keyGenerator = "keyGenerator", condition = "#id !=null && #id != ''")
     @Caching(
             cacheable = {
-                    @Cacheable(key = "#id")
+                    @Cacheable(condition = "#result != null", key = "#id")
             },
             put = {
-                    @CachePut(key = "#result.username"),
-                    @CachePut(key = "#result.password")
+                    @CachePut(condition = "#result != null", key = "#result.username"),
+                    @CachePut(condition = "#result != null", key = "#result.password")
             }
     )
     Admin selectByPrimaryKey(String id);

@@ -23,4 +23,9 @@ public class AdminApi {
     public Admin getAdminByUserName(@RequestParam String username) {
         return adminMapper.selectByUsername(username);
     }
+
+    @GetMapping("delAdmin")
+    public int delAdmin(@RequestParam String id) {
+        return adminMapper.deleteByPrimaryKey(id);
+    }
 }
